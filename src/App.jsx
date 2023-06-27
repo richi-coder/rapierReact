@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { Physics, RigidBody } from "@react-three/rapier";
 import { Box, OrbitControls, PerspectiveCamera, Plane, Stats } from "@react-three/drei";
 import VanillaBox from "./VanillaBox";
+import Vehicle from "./Vehicle";
 
 function App() {
   return (
@@ -17,10 +18,11 @@ function App() {
               <Plane args={[50,50]} rotation={[-Math.PI/2,0,0]} />
             </RigidBody>
             <VanillaBox />
+            <Vehicle />
           </Physics>
           <OrbitControls />
           <Stats />
-          <PerspectiveCamera makeDefault fov={50} position={[40, 15, 35]} />
+          <PerspectiveCamera makeDefault fov={50} position={[80, 15, 80]} />
         </Suspense>
       </Canvas>
     </div>
