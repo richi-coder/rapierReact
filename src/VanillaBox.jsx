@@ -16,6 +16,7 @@ function VanillaBox() {
     let rigidBody = world.createRigidBody(rigidBodyDesc)
     let colliderDesc = rapier.ColliderDesc.cuboid(boxDimension,boxDimension,boxDimension);
     let collider = world.createCollider(colliderDesc, rigidBody);
+
     
     
   return (
