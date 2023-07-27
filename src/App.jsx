@@ -7,6 +7,7 @@ import { OrbitControls, PerspectiveCamera, Stats } from "@react-three/drei";
 import { folder, useControls } from "leva";
 import { Physics } from "@react-three/rapier";
 import Ground from "./Common/Ground";
+import { Vehicle } from "./RigidVehicle/Vehicle";
 
 export default function App() {
     const maxValue = 20;
@@ -46,6 +47,7 @@ export default function App() {
             <Routes>
             <Route path="/fourlinksuspension" element={<FourLinkSuspension />} />
             <Route path="/linearsuspension" element={<LinearSuspension />} />
+            <Route path="/rigidvehicle" element={<Vehicle />} />
             </Routes>
         </Physics>
       </Canvas>

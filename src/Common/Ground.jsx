@@ -6,7 +6,7 @@ export default function Ground() {
     <RigidBody colliders={'cuboid'}>
       <Plane
         position={[0, -10, 0]}
-        args={[50, 50]}
+        args={[1500, 1500]}
         rotation={[-Math.PI / 2, 0, 0]}
       >
         <meshPhongMaterial color="blue" />

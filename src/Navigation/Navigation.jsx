@@ -5,6 +5,7 @@ export default function Navigation() {
     <div style={{width: '100%', display: 'flex', flexDirection: 'row', justifyContent: 'center', zIndex: 10, gap: '20px'}}>
         <Link to={'/fourlinksuspension'}>Four Link Suspension</Link>
         <Link to={'/linearsuspension'}>Linear Suspension</Link>
+        <Link to={'/rigidvehicle'}>Rigid Vehicle</Link>
     </div>
   )
 }
