@@ -1,7 +1,7 @@
-import { RoundedBox } from "@react-three/drei";
+import { Box } from "@react-three/drei";
 import { useRapier } from "@react-three/rapier";
 import { useEffect, useMemo, useRef } from "react";
-import { createSupport } from "./createSupport";
+import { createSupport } from "../RapierCreation/createSupport";
 
 export default function Support({ supportHeight }) {
     const vanillaRapier = useRapier();
@@ -17,8 +17,8 @@ export default function Support({ supportHeight }) {
     
 
   return (
-      <RoundedBox scale={[2,2,2]} position={[ 0, supportHeight - 15, 0]} args={[15, 3, 5]}>
+      <Box scale={[2,2,2]} position={[ 0, supportHeight - 15, 0]} args={[15, 3, 5]}>
         <meshPhongMaterial color="black" />
-      </RoundedBox>
+      </Box>
   );
 }
