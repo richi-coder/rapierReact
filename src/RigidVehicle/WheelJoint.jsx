@@ -16,8 +16,8 @@ export const WheelJoint = ({
     ]);
   
     useFrame(() => {
-      if (joint.current) {
-        joint.current.configureMotorVelocity(motorVel, 0);
+      if (joint.current && motorVel != 0) {
+        joint.current.configureMotorVelocity(100, 10);
       }
     });
   

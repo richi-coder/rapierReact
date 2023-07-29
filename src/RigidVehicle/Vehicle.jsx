@@ -9,38 +9,38 @@ export const Vehicle = () => {
     const { motorVel } = useControls({
         motorVel: {
             value: 1,
-            min: -60,
-            max: 60,
+            min: -6000,
+            max: 6000,
             step: 0.1
         }
     })
     const bodyRef = useRef(null);
     const wheelPositions = [
-      [-3, 0, 2],
-      [-3, 0, -2],
-      [3, 0, 2],
-      [3, 0, -2]
+      [-0.6, 0, 0.5],
+      [-0.6, 0, -0.5],
+      [0.6, 0, 0.5],
+      [0.6, 0, -0.5]
     ];
     const wheelRefs = useRef(
       wheelPositions.map(() => createRef())
     );
 
-    useEffect(() => {
-      wheelRefs.current.map(wheelRef => {
-        wheelRef.current.setAdditionalMass(5)
-      })
-    }, [])
+    // useEffect(() => {
+    //   wheelRefs.current[0].current.addTorque({ x: 0.1, y: 0, z: 0}, true)
+    // }, [])
     
   
     return (
       <group>
-        <RigidBody colliders="cuboid" ref={bodyRef} type="dynamic">
-          <Box scale={[6, 1, 1.9]} castShadow receiveShadow name="chassis" density={2}>
+        <RigidBody density={2} colliders="cuboid" ref={bodyRef} type="dynamic">
+          <Box scale={[1.2, 0.2, 0.5]} castShadow receiveShadow name="chassis">
             <meshStandardMaterial color={"red"} />
           </Box>
         </RigidBody>
         {wheelPositions.map((wheelPosition, index) => (
           <RigidBody
+            friction={2}
+            restitution={0.5}
             position={wheelPosition}
             colliders="hull"
             type="dynamic"
@@ -49,7 +49,7 @@ export const Vehicle = () => {
           >
             <Cylinder
               rotation={[Math.PI / 2, 0, 0]}
-              args={[1, 1, 1, 32]}
+              args={[0.15, 0.15, 0.1, 16]}
               castShadow
               receiveShadow
             >
@@ -65,7 +65,7 @@ export const Vehicle = () => {
             bodyAnchor={wheelPosition}
             wheelAnchor={[0, 0, 0]}
             rotationAxis={[0, 0, 1]}
-            motorVel={motorVel}
+            motorVel={index > 1 ? motorVel : 0}
           />
         ))}
       </group>

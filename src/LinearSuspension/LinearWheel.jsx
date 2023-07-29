@@ -3,7 +3,7 @@ import { RigidBody } from "@react-three/rapier";
 
 export default function LinearWheel({ reference, yPosition }) {
   return (
-    <RigidBody type="dynamic" ref={reference} density={1} colliders={'hull'}>
+    <RigidBody type="dynamic" ref={reference} density={0.00001} colliders={'hull'}>
         <Cylinder
             args={[0.15,0.15,0.1,15]}
             rotation={[0,0,Math.PI/2]}

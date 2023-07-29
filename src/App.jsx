@@ -45,9 +45,9 @@ export default function App() {
         <Physics debug gravity={[0,-10,-0]}>
             <Ground />
             <Routes>
-            <Route path="/fourlinksuspension" element={<FourLinkSuspension />} />
+            {/* <Route path="/fourlinksuspension" element={<FourLinkSuspension />} /> */}
             <Route path="/linearsuspension" element={<LinearSuspension />} />
-            <Route path="/rigidvehicle" element={<Vehicle />} />
+            {/* <Route path="/rigidvehicle" element={<Vehicle />} /> */}
             </Routes>
         </Physics>
       </Canvas>

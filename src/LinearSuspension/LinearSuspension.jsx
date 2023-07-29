@@ -42,16 +42,23 @@ export default function LinearSuspension() {
     useEffect(() => {
         // first Position
         // wheelRef.current.setAdditionalMass(20)
-        // wheelsRef.map(wheelRef => {
-        //     wheelRef.current.setAdditionalMass(20)
-        // })
-        chassisRef.current.setLinearDamping(2.8)
-        chassisRef.current.setAdditionalMass(120)
+        wheelsRef.current.map(wheelRef => {
+            wheelRef.current.setAdditionalMass(20)
+        })
+        chassisRef.current.setLinearDamping(3)
+        // chassisRef.current.setAdditionalMass(120)
+        // chassisRef.current.setAdditionalPrincipalAngularInertia({ x: 0.3, y: 0.2, z: 0.1 })
+        chassisRef.current.setAdditionalMassProperties(
+            120,                        // Mass.
+            { x: 0.0, y: 0.1, z: 0.0 }, // Center of mass.
+            { x: 0.0003, y: 0.0002, z: 0.0001 }, // Principal angular inertia.
+            { w: 1.0, x: 0.0, y: 0.0, z: 0.0 } // Principal angular inertia frame (unit quaternion).
+        );
     }, [])
     
 
     useFrame(() => {
-    //     // SPRING FORCE APPLIED HERE!
+        // SPRING FORCE APPLIED HERE!
       force = springForce(6000, chassisRef.current.translation().y);
     //   wheelRef.current.resetForces(true)
     //   wheelRef.current.addForce({x: 0, y: force, z: 0}, true)
@@ -59,6 +66,10 @@ export default function LinearSuspension() {
     //   console.log(force, 'force');
     chassisRef.current.resetForces(true)
     chassisRef.current.addForceAtPoint({x: 0, y: force, z: 0}, {x: 0, y: 10, z: 0}, true)
+
+    wheelsRef.current.map(wheelRef => {
+        wheelRef.current.addForceAtPoint({x: 0, y: -force/4, z: 0}, { x: 0, y: 0, z: 0}, true)
+    })
     
     })
 
@@ -71,13 +82,13 @@ export default function LinearSuspension() {
         {/* WHEELS CREATION */}
         {
             multidimensionalArray.map((item, index) => (
-                <LinearWheel reference={wheelsRef.current[index]} yPosition={yPosition} />
+                <LinearWheel key={index} reference={wheelsRef.current[index]} yPosition={yPosition} />
             ))
         }
         {/* <LinearWheel reference={wheelRef} yPosition={yPosition} /> */}
         {
             multidimensionalArray.map((item, index) => (
-                <PrismaticJoint bodyA={chassisRef} bodyB={wheelsRef.current[index]} multidimensionalArray={multidimensionalArray[index]}  />
+                <PrismaticJoint key={index+'joint'} bodyA={chassisRef} bodyB={wheelsRef.current[index]} multidimensionalArray={multidimensionalArray[index]}  />
             ))
         }
         {/* <PrismaticJoint bodyA={chassisRef} bodyB={wheelRef} multidimensionalArray={multidimensionalArray[0]}  /> */}

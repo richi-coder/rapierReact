@@ -5,7 +5,7 @@ export default function Ground() {
   return (
     <RigidBody colliders={'cuboid'}>
       <Plane
-        position={[0, -10, 0]}
+        position={[0, -1, 0]}
         args={[1500, 1500]}
         rotation={[-Math.PI / 2, 0, 0]}
       >
