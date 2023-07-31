@@ -43,11 +43,10 @@ export default function App() {
         <Stats />
         <PerspectiveCamera makeDefault fov={50} position={[xCamera, yCamera, zCamera]} rotation={[0,0,0]} />
         <Physics debug gravity={[0,-10,-0]}>
-            <Ground />
             <Routes>
-            {/* <Route path="/fourlinksuspension" element={<FourLinkSuspension />} /> */}
+            <Route path="/fourlinksuspension" element={<FourLinkSuspension />} />
             <Route path="/linearsuspension" element={<LinearSuspension />} />
-            {/* <Route path="/rigidvehicle" element={<Vehicle />} /> */}
+            <Route path="/rigidvehicle" element={<Vehicle />} />
             </Routes>
         </Physics>
       </Canvas>

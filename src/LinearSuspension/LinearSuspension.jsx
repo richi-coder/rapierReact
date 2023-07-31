@@ -50,7 +50,7 @@ export default function LinearSuspension() {
         // chassisRef.current.setAdditionalPrincipalAngularInertia({ x: 0.3, y: 0.2, z: 0.1 })
         chassisRef.current.setAdditionalMassProperties(
             120,                        // Mass.
-            { x: 0.0, y: 0.1, z: 0.0 }, // Center of mass.
+            { x: 0.0, y: 0.2, z: 0.0 }, // Center of mass.
             { x: 0.0003, y: 0.0002, z: 0.0001 }, // Principal angular inertia.
             { w: 1.0, x: 0.0, y: 0.0, z: 0.0 } // Principal angular inertia frame (unit quaternion).
         );
@@ -76,7 +76,6 @@ export default function LinearSuspension() {
 
   return (
     <group>
-        {/* <FixedBlock reference={fixedBlockRef} fixedBlockProps={[[0,-5,0], [0,0,0]]} /> */}
         <Ground2 />
         <FSAEchassis reference={chassisRef} />
         {/* WHEELS CREATION */}
@@ -85,13 +84,11 @@ export default function LinearSuspension() {
                 <LinearWheel key={index} reference={wheelsRef.current[index]} yPosition={yPosition} />
             ))
         }
-        {/* <LinearWheel reference={wheelRef} yPosition={yPosition} /> */}
         {
             multidimensionalArray.map((item, index) => (
                 <PrismaticJoint key={index+'joint'} bodyA={chassisRef} bodyB={wheelsRef.current[index]} multidimensionalArray={multidimensionalArray[index]}  />
             ))
         }
-        {/* <PrismaticJoint bodyA={chassisRef} bodyB={wheelRef} multidimensionalArray={multidimensionalArray[0]}  /> */}
     </group>
   );
 }

@@ -3,14 +3,15 @@ import { WheelJoint } from "./WheelJoint";
 import { RigidBody } from "@react-three/rapier";
 import { Box, Cylinder } from "@react-three/drei";
 import { useControls } from "leva";
+import Ground from "../Common/Ground";
 
 
 export const Vehicle = () => {
     const { motorVel } = useControls({
         motorVel: {
             value: 1,
-            min: -6000,
-            max: 6000,
+            min: -600,
+            max: 600,
             step: 0.1
         }
     })
@@ -68,6 +69,7 @@ export const Vehicle = () => {
             motorVel={index > 1 ? motorVel : 0}
           />
         ))}
+        <Ground />
       </group>
   )
 }

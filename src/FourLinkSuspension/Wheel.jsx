@@ -3,7 +3,7 @@ import { RigidBody } from '@react-three/rapier'
 
 export default function Wheel({ wheelRef }) {
   return (
-    <RigidBody type='dynamic' ref={wheelRef} colliders='trimesh'>
+    <RigidBody type='dynamic' ref={wheelRef} colliders='trimesh' friction={0}>
         <Cylinder
             args={[5,5,1.5,20]}
             rotation={[0,0,Math.PI/2]}

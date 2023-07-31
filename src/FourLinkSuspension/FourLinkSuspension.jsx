@@ -16,9 +16,9 @@ function FourLinkSuspension() {
   const { supportHeight } = useControls({
     supportHeight: {
       value: 8,
-      max: 20,
-      min: -20,
-      step: 0.1,
+      max: 10,
+      min: -10,
+      step: 0.05,
     },
   });
   const bodyRef = useRef(null);
@@ -30,11 +30,9 @@ function FourLinkSuspension() {
     [0, 0, 0],
   ];
 
-  const wheel = [[]];
-
   const arms = [
     [
-      [0, 0, -0.5],
+      [0, 0, 0],
       [0, 0, Math.PI / 2],
     ], // upper arm
     [
@@ -42,7 +40,7 @@ function FourLinkSuspension() {
       [0, 0, 0],
     ], // upright
     [
-      [0, 0, -0.5],
+      [0, 0, 0],
       [0, 0, Math.PI / 2],
     ], // lower arm
   ];
@@ -52,6 +50,10 @@ function FourLinkSuspension() {
   ];
 
   const armsRefs = useRef(arms.map(() => createRef()));
+  
+  useEffect(() => {
+    armsRefs.current[1].current.setEnabledRotations(false, false, false);
+  }, [])
 
   return (
     <group>
@@ -98,13 +100,13 @@ function FourLinkSuspension() {
           <Joint
             body={armsRefs.current[0]}
             next={armsRefs.current[1]}
-            firstOne={[-2.5, 0, 0]}
+            firstOne={[-3, 0, 0]}
             secondOne={[0, 2.5, 0]}
           />
           <Joint
             body={armsRefs.current[2]}
             next={armsRefs.current[1]}
-            firstOne={[-2.5, 0, 0]}
+            firstOne={[-3, 0, 0]}
             secondOne={[0, -2.5, 0]}
           />
           <WheelJoint
@@ -118,7 +120,6 @@ function FourLinkSuspension() {
         {/* SUPPORT */}
         <Support supportHeight={supportHeight} />
 
-        <Ground />
         </group>
   );
 }
