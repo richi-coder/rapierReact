@@ -8,6 +8,7 @@ import { folder, useControls } from "leva";
 import { Physics } from "@react-three/rapier";
 import Ground from "./Common/Ground";
 import { Vehicle } from "./RigidVehicle/Vehicle";
+import RayCasting from "./RayCasting/RayCasting";
 
 export default function App() {
     const maxValue = 20;
@@ -47,6 +48,7 @@ export default function App() {
             <Route path="/fourlinksuspension" element={<FourLinkSuspension />} />
             <Route path="/linearsuspension" element={<LinearSuspension />} />
             <Route path="/rigidvehicle" element={<Vehicle />} />
+            <Route path="/raycasting" element={<RayCasting />} />
             </Routes>
         </Physics>
       </Canvas>
